@@ -11,6 +11,8 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { Clock } from "@/components/sidebar/clock"
+import { MiniCalendar } from "@/components/sidebar/mini-calendar"
 
 const NAV = [
   { href: "/", label: "대시보드", icon: LayoutDashboard },
@@ -54,6 +56,12 @@ export function AppSidebar() {
           )
         })}
       </nav>
+
+      <div className="flex flex-col gap-2 px-2 pt-1">
+        <Clock />
+        <MiniCalendar />
+      </div>
+
       <div className="mt-auto p-3 text-xs text-muted-foreground">
         개인 작업 관리 · 로컬 저장
       </div>
