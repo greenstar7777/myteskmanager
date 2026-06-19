@@ -1,21 +1,34 @@
-# Next.js template
+# FlowDesk — 개인 작업 관리
 
-This is a Next.js template with shadcn/ui.
+프로젝트 관리 기법을 적용한 개인용 작업 관리 앱입니다. 백엔드 없이 브라우저
+`localStorage`에 데이터를 저장하므로 바로 실행해 쓸 수 있습니다.
 
-## Adding components
+## 적용한 프로젝트 관리 기법
 
-To add components to your app, run the following command:
+- **칸반 보드** (`/board`) — 백로그 → 할 일 → 진행 중 → 완료 컬럼. 카드를
+  끌어다 놓아 상태를 바꿉니다(드래그 앤 드롭).
+- **아이젠하워 매트릭스** (`/matrix`) — 긴급도/중요도 4분면으로 우선순위 결정.
+  카드를 끌어다 분면을 바꿀 수 있습니다.
+- **작업 목록** (`/tasks`) — 검색·상태·우선순위 필터와 정렬, 빠른 완료 토글.
+- **대시보드** (`/`) — KPI(전체/완료율/기한 초과/마감 임박), 상태 분포 도넛,
+  최근 7일 완료 추세, 우선순위 분포, 프로젝트별 진행률, 다가오는 마감.
+
+## 실행
 
 ```bash
-npx shadcn@latest add button
+pnpm dev      # 개발 서버
+pnpm build    # 프로덕션 빌드
+pnpm typecheck && pnpm lint
 ```
 
-This will place the ui components in the `components` directory.
+## 구조
 
-## Using components
+- `lib/types.ts` — 작업 데이터 모델과 상태/우선순위 정의
+- `lib/tasks-context.tsx` — `useSyncExternalStore` 기반 localStorage 스토어
+  (탭 간 동기화 포함)
+- `lib/stats.ts` — 대시보드용 파생 통계 계산
+- `lib/seed.ts` — 최초 실행 시 채워지는 예시 데이터
+- `components/` — UI 프리미티브, 칸반/매트릭스/목록/대시보드 컴포넌트
 
-To use the components in your app, import them as follows:
-
-```tsx
-import { Button } from "@/components/ui/button";
-```
+데이터는 `myapp.tasks.v1` 키로 저장됩니다. 코드에서 `resetSeed()`를 호출하면
+예시 데이터로 초기화할 수 있습니다.
