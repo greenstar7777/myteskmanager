@@ -57,12 +57,12 @@ export function AppSidebar() {
         })}
       </nav>
 
-      <div className="flex flex-col gap-2 px-2 pt-1">
+      <div className="mt-auto flex flex-col gap-2 border-t px-2 pt-3 pb-2">
         <Clock />
         <MiniCalendar />
       </div>
 
-      <div className="mt-auto p-3 text-xs text-muted-foreground">
+      <div className="p-3 text-xs text-muted-foreground">
         개인 작업 관리 · 로컬 저장
       </div>
     </aside>
