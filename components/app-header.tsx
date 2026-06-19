@@ -6,6 +6,7 @@ import { Plus } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { useTaskDialog } from "@/components/task-dialog"
 
 const PAGE_TITLES: Record<string, string> = {
@@ -53,10 +54,13 @@ export function AppHeader() {
         })}
       </nav>
 
-      <Button className="ml-auto" onClick={() => openNew()}>
-        <Plus />
-        새 작업
-      </Button>
+      <div className="ml-auto flex items-center gap-2">
+        <ThemeToggle />
+        <Button onClick={() => openNew()}>
+          <Plus />
+          새 작업
+        </Button>
+      </div>
     </header>
   )
 }
